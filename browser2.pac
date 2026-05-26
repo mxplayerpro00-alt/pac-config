@@ -1,7 +1,6 @@
 function FindProxyForURL(url, host) {
 
     // ===== LOCAL / LAN =====
-    // Para hindi dumaan sa unnecessary checks
     if (isPlainHostName(host) ||
         dnsDomainIs(host, ".local") ||
         isInNet(dnsResolve(host), "192.168.0.0", "255.255.0.0") ||
@@ -29,6 +28,8 @@ function FindProxyForURL(url, host) {
         dnsDomainIs(host, "bilibili.tv") ||
         dnsDomainIs(host, "aniwatch.to") ||
         dnsDomainIs(host, "animekai.to") ||
+        dnsDomainIs(host, "re-anime.to") ||
+        shExpMatch(host, "*.re-anime.to") ||
         shExpMatch(host, "*.video.*") ||
         shExpMatch(host, "*.stream.*") ||
         shExpMatch(host, "*.cdn.*")) {
@@ -57,7 +58,5 @@ function FindProxyForURL(url, host) {
     }
 
     // ===== DEFAULT =====
-    // Best performance setup:
-    // walang proxy delay, stable browsing + smooth video
     return "DIRECT";
 }
